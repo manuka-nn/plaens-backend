@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PLAENS Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#45291D">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preload" as="image" href="assets/logo-letters-light.png">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-latin-wght-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="toasts" aria-live="polite"></div>
+
+  <!-- Your Firebase settings (off until you switch them on) -->
+  <script src="js/firebase-config.js?v=2"></script>
+  <!-- Firebase libraries load only when Firebase is switched on -->
+  <script>
+    if (window.PLAENS_FIREBASE && window.PLAENS_FIREBASE.enabled) {
+      ['firebase-app-compat.js', 'firebase-auth-compat.js', 'firebase-firestore-compat.js']
+        .forEach(function (f) { document.write('<script src="js/vendor/' + f + '"><\/script>'); });
+    }
+  </script>
+  <!-- Sends receipt emails through EmailJS (optional) -->
+  <script src="js/vendor/email.min.js"></script>
+  <!-- The store engine: data, stock, orders, profit, receipts -->
+  <script src="js/server.js?v=2"></script>
+  <!-- The dashboard screens -->
+  <script src="js/app.js?v=2"></script>
+</body>
+</html>

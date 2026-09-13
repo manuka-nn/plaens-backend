@@ -1,0 +1,30 @@
+rules_version = '2';
+
+// PLAENS Firestore security rules.
+//
+// 1. Replace you@example.com below with the email you sign in with, lowercase.
+// 2. Add more people by adding their emails to the list, separated by commas.
+//    (Create them first under Authentication > Users.)
+// 3. Press Publish.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isTeam() {
+      return request.auth != null
+        && request.auth.token.email.lower() in [
+          'you@example.com'
+        ];
+    }
+
+    // The PLAENS store data
+    match /stores/{storeId}/{document=**} {
+      allow read, write: if isTeam();
+    }
+
+    // Everything else stays closed
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
